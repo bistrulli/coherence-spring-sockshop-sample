@@ -5,9 +5,7 @@
   Licensed under the Universal Permissive License v 1.0 as shown at
   https://oss.oracle.com/licenses/upl.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
 		<groupId>com.oracle.coherence.examples.sockshop.spring</groupId>
 		<artifactId>sockshop-parent</artifactId>
@@ -79,7 +77,7 @@
 		<dependency>
 			<groupId>com.oracle.coherence.ce</groupId>
 			<artifactId>coherence</artifactId>
-			<version>${version.lib.coherence}</version>
+			<version>22.06.2</version>
 		</dependency>
 		<dependency>
 			<groupId>io.micrometer</groupId>
@@ -134,11 +132,42 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${version.lib.spring-boot}</version>
+				<version>2.6.4</version>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
 
+	<!--
 	<profiles>
 		<profile>
 			<id>container</id>
@@ -159,7 +188,6 @@
 								</tags>
 							</to>
 							<container>
-								<!-- good defaults intended for containers -->
 								<jvmFlags>
 									<jvmFlag>-server</jvmFlag>
 									<jvmFlag>-Djava.awt.headless=true</jvmFlag>
@@ -190,4 +218,5 @@
 			</build>
 		</profile>
 	</profiles>
+	-->
 </project>
