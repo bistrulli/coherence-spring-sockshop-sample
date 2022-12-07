@@ -18,8 +18,8 @@ spring:
   zipkin:
     base-url: http://jaeger-agent:9411
     enabled: false
-  jackson:
-    default-property-inclusion: non_null
+  #jackson:
+  #  default-property-inclusion: non_null
 management:
   endpoints:
     web:
